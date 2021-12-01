@@ -6,7 +6,7 @@
 
     <div class="product" v-if="product">
       <div class="image">
-        <img :src="`/${product.img}`" :alt="product.name" />
+        <img :src="`${publicPath}${product.img}`" :alt="product.name" />
       </div>
       <div class="content">
         <h2 class="title">{{ product.name }}</h2>
@@ -31,6 +31,7 @@ export default {
       loading: false,
       product: null,
       error: null,
+      publicPath: process.env.BASE_URL
     }
   },
   created() {
@@ -46,7 +47,7 @@ export default {
       this.loading = true
       const id = this.$route.params.id
       try {
-        const response = await fetch('/products.json')
+        const response = await fetch(`${this.publicPath}products.json`)
         const data = await response.json()
         this.product = data.find((product) => product.id === parseInt(id))
       } catch (error) {

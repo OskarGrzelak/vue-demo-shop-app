@@ -25,6 +25,7 @@ export default {
       loading: false,
       products: null,
       error: null,
+      publicPath: process.env.BASE_URL
     }
   },
   created() {
@@ -39,7 +40,7 @@ export default {
       this.products = null
       this.loading = true
       try {
-        const response = await fetch('/products.json')
+        const response = await fetch(`${this.publicPath}products.json`)
         const data = await response.json()
         this.products = data
       } catch (error) {

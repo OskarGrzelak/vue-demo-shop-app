@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <router-link :to="`/products/${product.id}`">
-      <img :src="`/${product.img}`" :alt="product.name" />
+      <img :src="`${publicPath}${product.img}`" :alt="product.name" />
     </router-link>
     <div class="content">
       <router-link :to="`/products/${product.id}`">
@@ -17,6 +17,11 @@
 <script>
 export default {
   props: ['product'],
+  data() {
+    return {
+      publicPath: process.env.BASE_URL
+    }
+  },
   methods: {
     addToCart(product) {
       this.$store.dispatch('addToCart', product)

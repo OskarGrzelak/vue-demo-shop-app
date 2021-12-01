@@ -14,7 +14,6 @@ export const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPostition) {
-    console.log(savedPostition)
     if (savedPostition) {
       return savedPostition
     }

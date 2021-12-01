@@ -2,7 +2,7 @@
   <li class="cart-list-item">
     <div>
       <div class="image">
-        <img :src="`/${product.img}`" :alt="product.name" />
+        <img :src="`${publicPath}${product.img}`" :alt="product.name" />
       </div>
       <h3 class="title">{{ product.name }}</h3>
     </div>
@@ -30,6 +30,11 @@ export default {
     MultiplyIcon,
   },
   props: ['product'],
+  data() {
+    return {
+      publicPath: process.env.BASE_URL
+    }
+  },
   computed: {
     productQuantity() {
       return this.product.quantity
